@@ -1,0 +1,28 @@
+html body {
+    box-sizing: border-box;
+    background-color: #101a3a;
+    padding: 0;
+    margin: 0;
+}
+
+.form-container{
+    margin-top : 30px;
+    margin-bottom : 30px;
+    margin-left : 400px;
+    margin-right : 400px;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+.form-container label {
+    color: white;
+}
+
+@media screen and (max-width: 767px) {
+    .form-container{
+        margin-top : 30px;
+        margin-left : 20px;
+        margin-right : 20px;
+        padding: 15x;
+    }
+  }
