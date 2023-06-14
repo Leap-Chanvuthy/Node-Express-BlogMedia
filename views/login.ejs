@@ -19,6 +19,8 @@
         <div class="mb-6">
           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
           <input type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
+          <input type="checkbox" class="mt-3" id="showPassword">
+          <h5 class="text-2xl- text-gray-300 font-medium " id="changeText">show password</h5>
         </div>
         <div class="flex items-start mb-6">
           <label for="terms" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not yet resgister ? <a href="/resgister" class="text-red-600 hover:underline dark:text-blue-500">Create account</a></label>
@@ -31,6 +33,23 @@
   
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+<script>
+  const passwordField = document.getElementById('password');
+  const chnageText = document.getElementById('changeText');
+  const showPassword = document.getElementById('showPassword');
+
+  showPassword.addEventListener('click' , function (){
+    if (passwordField.type === 'password'){
+      passwordField.type = 'text';
+      chnageText.textContent = 'hide password';
+    } else {
+      passwordField.type = 'password';
+      chnageText.textContent = 'show password';
+    }
+  }) 
+
+
+</script>
 </html>
 
 

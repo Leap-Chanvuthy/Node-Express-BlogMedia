@@ -1,8 +1,13 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@500&display=swap');
+
 html body {
     box-sizing: border-box;
     background-color: #101a3a;
     padding: 0;
     margin: 0;
+    font-family: 'Signika Negative', sans-serif;
 }
 
 .form-container{
