@@ -32,3 +32,7 @@ app.get ('/login' , (req , res) =>{
 app.get ('/about' , (req , res) =>{
     res.render ('about');
 })
+
+app.get ('/create-blog' , (req , res) =>{
+    res.render('create');
+})
