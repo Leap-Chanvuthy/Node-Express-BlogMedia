@@ -10,23 +10,24 @@
     
   <%- include('./layouts/navbar'); -%>
 
-  <div class="content-wrapper pt-24 pb-1 px-4"> 
+<% blogs.forEach(blog => { %>
+  <div class="content-wrapper pt-24 pb-16 px-4"> 
     <div class="max-w-full rounded-lg overflow-hidden bg-slate-700 text-gray-300 shadow-lg">
       <div class="flex flex-col md:flex-row">
         <div class="md:w-1/2 w-full">
-          <img class="object-cover" src="https://www.rei.com/assets/adventures/images/homepage/about/about-uncommon-tile/live.jpg" alt="Card Image">
+          <img class="object-cover" src="/uploads/Blogs/<%= blog.image %>" alt="Card Image">
         </div>
         <div class="md:w-3/5 p-4 flex flex-col justify-between">
           <div>
-            <h3 class="text-xl font-semibold mb-2">Weekend Adventure with family</h3>
-            <p class="text-sm mb-4 overflow-hidden">Adventure fuels our spirit of curiosity and pushes us to test our limits. Whether it's hiking through towering mountains, diving into the depths of the ocean, or traversing untamed wilderness, each step unravels a sense of discovery and wonder.</p>
+            <h3 class="text-xl font-semibold mb-2"> <%= blog.title %> </h3>
+            <p class="text-sm mb-4 overflow-hidden"> <%= blog.description %> </p>
           </div>
           <div class="flex items-center space-x-2">
             <img class="w-8 h-8 rounded-full object-cover" src="https://cdn4.sharechat.com/WhatsAppprofiledpboys_d7f9b06_1658641555734_sc_cmprsd_75.jpg" alt="User Profile Image">
             <div class="flex flex-col mt-6">
                 <span class="text-sm">Elon Thy</span>
                 <span class="text-sm font-thin text-gray-500 "><p>elonthy@gmail.com</p></span>
-                <p class="text-sm font-thin text-gray-500"> Posted : 17 minutes ago</p>
+                <p class="text-sm font-thin text-gray-500"> Posted : <%= blog.createdAt  %></p>
             </div>
           </div>
           
@@ -48,18 +49,16 @@
               </a>
             </div>
             <div class="flex items-center space-x-2 pt-5">
-              <a href="">
-                 <span class="text-sm text-gray-400">view blog details</span>
+              <a href="/details/<%= blog._id  %>">
+                 <span class="text-sm text-gray-400">details</span>
               </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-</div>
-
-
-
+  </div>
+<% }); %>
 
 
 
