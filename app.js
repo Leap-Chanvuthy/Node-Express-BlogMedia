@@ -13,13 +13,13 @@ const URI = 'mongodb+srv://LeapVuthy:Vuthy0112@vuthy.ifubzha.mongodb.net/Node-Ex
 mongoose.connect( URI,  { useNewUrlParser: true,useUnifiedTopology: true })
     .then (result =>{
        app.listen (3000);
-       console.log ('Database connected successfully');
     })
     .catch((err) =>{
         console.log (err);
     })
 
-    
+
+
 app.get ('/resgister' , (req , res) =>{
     res.render ('resgister')
 })
@@ -27,6 +27,7 @@ app.get ('/resgister' , (req , res) =>{
 app.get ('/login' , (req , res) =>{
     res.render ('login');
 })
+
 
 app.get ('/about' , (req , res) =>{
     res.render ('about');

@@ -30,3 +30,37 @@ module.exports.create_blog_post = ( async (req , res) =>{
         res.status(500).json({ error: 'Failed to create a blog' });
     }   
 });
+
+module.exports.blog_id_get = ( (req , res) =>{
+    const id = req.params.id;
+    Blog.findById(id)
+        .then ((result) =>{
+            res.render ('details' , {blog : result});
+        })
+        .catch ((err) =>{
+            console.log (err);
+        })
+});
+
+module.exports.blog_id_delete = (async ( req , res) => {
+    try{
+        const id = req.params.id;
+        const deleteBlog = await Blog.findByIdAndDelete(id);
+        res.status(200).json({message : 'successfully deleted a blog'});
+    }
+    catch (err) {
+        res.status(404).json({message : 'failed to delete a blog'});
+    }
+});
+
+module.exports.blog_id_update = (async (req , res) =>{
+    try {
+        const id = req.params.id;
+        const updateBlog = await Blog.findByIdAndUpdate(id);
+        res.status(200).json({message : 'successfully update a blog'});
+
+    }
+    catch (err){
+        res.status(404).json({message : 'failed to update a blog'});
+    }
+});

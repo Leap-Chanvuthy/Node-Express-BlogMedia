@@ -10,8 +10,30 @@ html body {
     padding : 10psx; 
 }
 
-.content-wraper {
-    /* margin-top: 100px;
-    margin-bottom: 50px; */
-    width: 100%;
+.content-wrapper {
+   padding-left: 15rem;
+   padding-right: 15rem;
 }
+
+a  {
+    cursor: pointer;
+}
+
+/* Default styles */
+
+/* Styles for medium devices (tablets) */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding-left: 1rem;
+        padding-right: 1rem;
+     }
+  }
+  
+  /* Styles for small devices (mobile) */
+  @media (max-width: 480px) {
+    .content-wrapper {
+        padding-left: 1rem;
+        padding-right: 1rem;
+     }
+  }
+  
