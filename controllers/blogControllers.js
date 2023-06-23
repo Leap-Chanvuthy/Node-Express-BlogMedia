@@ -53,10 +53,23 @@ module.exports.blog_id_delete = (async ( req , res) => {
     }
 });
 
+
+module.exports.blog_id_update_get = ((req , res) =>{
+    const id = req.params.id;
+    Blog.findById(id)
+    .then ((result)  =>{
+        res.render ('edit' , {blog : result});
+    })
+    .catch ((err) =>{
+        console.log ('cannot find go to edit page');
+    })
+})
+
 module.exports.blog_id_update = (async (req , res) =>{
     try {
         const id = req.params.id;
-        const updateBlog = await Blog.findByIdAndUpdate(id);
+        const updatedBlog = req.body;
+        const blog = await Blog.findByIdAndUpdate(id , updatedBlog , {new : true});
         res.status(200).json({message : 'successfully update a blog'});
 
     }

@@ -10,8 +10,9 @@ router.post ('/create-blog' , multerMiddleware.upload.single('image') , blogCont
 
 
 // action routes
-router.get ('/details/:id' , blogControllers.blog_id_get);
-router.delete ('/details/:id' , blogControllers.blog_id_delete);
-router.put ('/details/:id' , blogControllers.blog_id_update);
+router.get ('/blog/details/:id' , blogControllers.blog_id_get);
+router.delete ('/blog/details/:id' , blogControllers.blog_id_delete);
+router.get('/blog/edit/:id' , blogControllers.blog_id_update_get);
+router.put ('/blog/edit/:id' , blogControllers.blog_id_update);
 
 module.exports = router ;

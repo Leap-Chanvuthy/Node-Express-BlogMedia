@@ -1,0 +1,37 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vuthy Blog</title>
+  <link rel="stylesheet" href="/style/auth.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"  rel="stylesheet" />
+</head>
+<body>
+    
+  <%- include('./layouts/navbar'); -%>
+
+    
+  <div class="blog-container pt-24 pb-16">
+      <div class="form-container">
+        <h3 class="text-2xl text-gray-500 font-bold font-sans justify-center text-center pt-5">Edit a blog</h3>
+          <form id="editBlogForm" action="/blog/edit/<%= blog._id %>?_method=PUT" method="POST">
+                <div class="mb-6">
+                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blog title</label>
+                    <input type="textareas" id="title" name="title" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" value="<%= blog.title  %>">
+                </div>
+                <div class="mb-6">   
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blog descriptions</label>
+                    <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><%= blog.description  %></textarea>
+                </div>
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button>
+            </form>
+      </div>
+  </div>
+    
+
+
+<%- include('./layouts/footer'); -%>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+<script src="js/edit.js"></script>
+</html>
