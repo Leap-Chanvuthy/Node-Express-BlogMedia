@@ -68,9 +68,9 @@ module.exports.blog_id_update_get = ((req , res) =>{
 module.exports.blog_id_update = (async (req , res) =>{
     try {
         const id = req.params.id;
-        const updatedBlog = req.body;
-        const blog = await Blog.findByIdAndUpdate(id , updatedBlog , {new : true});
-        res.status(200).json({message : 'successfully update a blog'});
+        const {title , description} = req.body;
+        const updatedBlog = await Blog.findByIdAndUpdate(id , {title , description} , {new : true});
+        res.status(200).json({updatedBlog});
 
     }
     catch (err){

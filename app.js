@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const  mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes');
+const authRoutes = require ('./routes/authRoutes');
 const path = require('path');
 
 app.use (express.json());
@@ -19,22 +20,12 @@ mongoose.connect( URI,  { useNewUrlParser: true,useUnifiedTopology: true })
     })
 
 
-
-app.get ('/resgister' , (req , res) =>{
-    res.render ('resgister')
-})
-
-// app.get ('/edit' , (req , res) =>{
-//     res.render('edit');
-// })
-
-app.get ('/login' , (req , res) =>{
-    res.render ('login');
-})
+    app.use (blogRoutes)
+    app.use (authRoutes);
 
 
 app.get ('/about' , (req , res) =>{
     res.render ('about');
 })
 
-app.use (blogRoutes)
+

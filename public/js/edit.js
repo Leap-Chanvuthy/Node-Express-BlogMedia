@@ -1,33 +1,59 @@
-  // Get the form element
-  const editBlogForm = document.getElementById('editBlogForm');
+// const editBlogForm = document.getElementById('editBlogForm');
+//   editBlogForm.addEventListener ('submit' , async (event) => {
+//     event.preventDefault();
+//     const formdata = new FormData (editBlogForm);
+//     const blogId = '<%= blog._id %>' ;
 
-  // Add an event listener to the form's submit event
-  editBlogForm.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent the default form submission
+//     try {
+//       const respone = fetch (`/blog/edit/${blogId}` , {
+//         method : 'PUT',
+//         body : formdata
+//       });
+//       if (respone.ok){
+//         const updatedBlog = await res.json();
+//         consolog.log ('updated successfully ' , updatedBlog);
+//         window.location.href = '/';
+//       }else {
+//         console.log ('cannot update a blog');
+//       }
+//     }
+//     catch (err){
+//       console.log ('cannot update a blog');
+//     }
+//   })
 
-    const formData = new FormData(editBlogForm); // Create a new FormData object with the form data
-    const url = editBlogForm.getAttribute('action'); // Get the form action URL
+// Get the form element
+const editBlogForm = document.getElementById('editBlogForm');
 
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: formData,
-      });
+// Add event listener for form submission
+editBlogForm.addEventListener('submit', async (e) => {
+  e.preventDefault(); // Prevent the default form submission
 
-      if (response.ok) {
-        const updatedBlog = await response.json(); // Assuming the server returns the updated blog data as JSON
+  // Get the blog ID from the form action attribute
+  const blogId = editBlogForm.action.split('/').pop();
 
-        // Display the updated blog data on the frontend
-        document.getElementById('title').textContent = updatedBlog.title;
-        document.getElementById('description').textContent = updatedBlog.description;
+  // Get the updated title and description values
+  const title = editBlogForm.title.value;
+  const description = editBlogForm.description.value;
 
-        // Redirect to the homepage or any other desired page
-        window.location.href = '/'; // Replace with the desired URL
-      } else {
-        console.error('Failed to update blog:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error updating blog:', error);
+  try {
+    // Send an AJAX request to update the blog
+    const response = await fetch(`/blog/edit/${blogId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title, description }),
+    });
+    
+    if (response.ok) {
+      // Blog updated successfully
+      window.location.href = '/'; // Redirect to the home page
+    } else {
+      // Failed to update the blog
+      console.error('Failed to update the blog');
     }
-  });
-
+  } catch (err) {
+    console.error(err);
+  }
+});
