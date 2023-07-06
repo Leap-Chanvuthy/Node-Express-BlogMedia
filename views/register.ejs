@@ -16,6 +16,7 @@
         <div class="mb-6">
           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
           <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@gmail.com" required>
+          <div class="text-lg font-thin text-red-700 pl-2 email errors"><p>error email</p></div>
         </div>
         <div class="mb-6">
           <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your phone</label>
@@ -28,10 +29,7 @@
         <div class="mb-6">
           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
           <input type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="154@#*98!" required>
-        </div>
-        <div class="mb-6">
-          <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat password</label>
-          <input type="password" id="repeat-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="154@#*98!" required>
+          <div class="text-lg font-thin text-red-700 pl-2 email errors" id="password1"><p></p></div>
         </div>
         <div class="flex items-start mb-6">
           <div class="flex items-center h-5">
@@ -48,6 +46,24 @@
   
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+<script>
+  const password = document.getElementById('password');
+  const repeat_password = document.getElementById('repeat-password');
+  let error_password = document.getElementById('error-password');
+  let valid_password = document.getElementById('valid-password');
+ 
+  const password1 = password.value;
+  const password2 = repeat_password.value;
+
+    if (password1 == password2){
+      valid_password.innerHTML = "Match password";
+    }else{
+      error_password.innerHTML = "Password does not match";
+    }
+
+
+
+</script>
 </html>
 
 
