@@ -22,7 +22,8 @@ module.exports.create_blog_post = ( async (req , res) =>{
     console.log (req.body);
 
     try{
-        const newBlog = await Blog.create ({title , description , image});
+        
+        const newBlog = await Blog.create ({title , description , image });
         res.status(200).json({newBlog});
     }
     catch (err){

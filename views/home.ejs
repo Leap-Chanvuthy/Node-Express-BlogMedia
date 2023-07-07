@@ -29,7 +29,11 @@
                   <div class="flex flex-col mt-6">
                     <span class="text-sm">Elon Thy</span>
                     <span class="text-sm font-thin text-gray-500"><p>elonthy@gmail.com</p></span>
-                    <p class="text-sm font-thin text-gray-500">Posted: <%= blog.createdAt %></p>
+                    <p class="text-sm font-thin text-gray-500">
+                      Posted: <%= blog.createdAt.toLocaleDateString('en-US', { dateStyle: 'long' }) %>
+                      | At :
+                      <%= blog.createdAt.toLocaleTimeString('en-US', { timeStyle: 'short' }) %>
+                    </p>                    
                   </div>
                 </div>
                 

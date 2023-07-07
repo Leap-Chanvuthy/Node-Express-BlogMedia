@@ -13,30 +13,32 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Please enter a password'],
-    minlength: [6, 'Password must be at least 6 characters long'],
+    minlength: [6, 'Minimum password length is 6 characters'],
   },
   username: {
     type: String,
-    required: false,
+    required: true,
   },
   phone: {
     type: String,
-    required: false,
+    required: true,
   },
-});
+} , {timeStamp : true });
 
-// Hash password in the database
-userSchema.pre('save', async (next) => {
-  const salt = await bcrypt.genSalt();
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
-});
 
 // Log user record after saving to the database
 userSchema.post('save', function (doc, next) {
   console.log('User was saved to the database:', doc);
   next();
 });
+
+// Hash password in the database
+userSchema.pre('save', async function (next){
+  const salt = await bcrypt.genSalt();
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
 
 // Find email in the database and perform login (middleware)
 userSchema.statics.login = async function ( email, password ){

@@ -12,24 +12,24 @@
    
     <div class="form-container">
       <h3 class="text-2xl text-gray-500 font-bold font-sans justify-center text-center pt-3">Register</h3>
-        <form>
+        <form action="/register">
         <div class="mb-6">
           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-          <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@gmail.com" required>
-          <div class="text-lg font-thin text-red-700 pl-2 email errors"><p>error email</p></div>
-        </div>
-        <div class="mb-6">
-          <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your phone</label>
-          <input type="phone" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="+855 70 773 389" required>
-        </div>
-        <div class="mb-6">
-            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your username</label>
-            <input type="username" id="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="John Doe" required>
+          <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@gmail.com" required>
+          <div class="text-red-500 text-sm pt-3 pl-3 email error"></div>
         </div>
         <div class="mb-6">
           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-          <input type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="154@#*98!" required>
-          <div class="text-lg font-thin text-red-700 pl-2 email errors" id="password1"><p></p></div>
+          <input type="password" id="password" name="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="154@#*98!" required>
+          <div class="text-red-500 text-sm pt-3 pl-3 password error"></div>
+        </div>
+        <div class="mb-6">
+          <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your phone</label>
+          <input type="phone" id="phone" name="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="+855 70 773 389" required>
+        </div>
+        <div class="mb-6">
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your username</label>
+            <input type="username" id="username" name="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="John Doe" required>
         </div>
         <div class="flex items-start mb-6">
           <div class="flex items-center h-5">
@@ -47,22 +47,45 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 <script>
-  const password = document.getElementById('password');
-  const repeat_password = document.getElementById('repeat-password');
-  let error_password = document.getElementById('error-password');
-  let valid_password = document.getElementById('valid-password');
- 
-  const password1 = password.value;
-  const password2 = repeat_password.value;
+    const form = document.querySelector('form');
+    const emailError = document.querySelector('.email.error');
+    const passwordError = document.querySelector('.password.error');
 
-    if (password1 == password2){
-      valid_password.innerHTML = "Match password";
-    }else{
-      error_password.innerHTML = "Password does not match";
+
+    form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    // reset errors
+    emailError.textContent = "";
+    passwordError.textContent = "";
+
+    // get values
+    const email = form.email.value;
+    const password = form.password.value;
+    const username = form.username.value;
+    const phone = form.phone.value;
+
+    try {
+        const res = await fetch('/register', { 
+        method: 'POST', 
+        body: JSON.stringify({ email, password , username , phone }),
+        headers: {'Content-Type': 'application/json'}
+        });
+
+        const data = await res.json();
+        console.log (data);
+            if (data.errors){
+                emailError.textContent = data.errors.email;
+                passwordError.textContent = data.errors.password;
+            }
+            if (data.user){
+                  location.assign ('/');
+            }    
+    }
+    catch (err) {
+        console.log(err);
     }
 
-
-
+});
 </script>
 </html>
 
