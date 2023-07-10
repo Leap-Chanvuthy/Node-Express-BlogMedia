@@ -4,7 +4,7 @@ const Blog = require ('../models/blogModels');
 module.exports.all_blog_get = (async (req , res) =>{
     try{
         const blogs = await Blog.find();
-        res.render ('home' , {blogs});
+        res.render ('home' , {blogs , user : req.user});
     }
     catch (err){
         console.log ('cannot get blogs' + err);

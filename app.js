@@ -3,6 +3,7 @@ const app = express();
 const  mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes');
 const authRoutes = require ('./routes/authRoutes');
+const {checkUser} = require ('./middleware/authMiddleware');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
@@ -24,9 +25,7 @@ mongoose.connect( URI,  { useNewUrlParser: true,useUnifiedTopology: true })
 
     app.use (blogRoutes)
     app.use (authRoutes);
-
-
-app.get ('/about' , (req , res) =>{
+    app.get ('/about' , (req , res) =>{
     res.render ('about');
 })
 

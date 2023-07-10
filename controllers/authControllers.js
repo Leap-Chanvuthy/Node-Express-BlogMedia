@@ -84,5 +84,15 @@ module.exports.login_post = async (req, res) => {
   }
 };
 
+module.exports.logout_get = (req , res) =>{
+  try {
+    res.cookie ('jwt' , ' ' , {maxAge : 1});
+    res.redirect('/login');
+    res.status(200).json({message : 'successfully logged users out'});
+  }catch (err){
+    console.log ("its has been an error" , err);
+  }
+}
+
 
 
